@@ -1,4 +1,5 @@
 from django.contrib import admin
-from .models import Members
+from .models import Member, Office, Country
 
-admin.site.register(Members)
+members = [Member, Office, Country]
+admin.site.register(members)

@@ -1,13 +1,13 @@
 from django.shortcuts import render
-from rest_framework.response import Response
+from .models import Member
+from .serializers import MemberSerializer
+from rest_framework import viewsets
 
-from rest_framework.views import APIView
-from .models import Members
-from .serializers import MembersSerializer
+class MemberViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    ReadOnlyのMemberデータの出力
+    """
+    queryset = Member.objects.filter(status="Employed")
+    # queryset = Member.objects.all()
+    serializer_class = MemberSerializer
 
-
-class MemberList(APIView):
-    def get(self, request, format=None):
-        members = Members.objects.all()
-        serializer = MembersSerializer(members, many=True)
-        return Response(serializer.data)
