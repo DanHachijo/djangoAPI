@@ -38,3 +38,4 @@ class TicketSerializer(serializers.ModelSerializer):
 
 # many-to-manyの場合
         # language = serializers.StringRelatedField(read_only=True, many=True)
+
