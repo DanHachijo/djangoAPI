@@ -1,7 +1,4 @@
-# djangoAPI
-DjangoAPIの基本
-
-PostgreSQLのインストール
+#PostgreSQLのインストール
 では自分が使っているPCにPostgresをインストールしましょう。
 
 本番環境ではUbuntuとかのLinuxのサーバーにPostgresを入れなおすことになりますが、テスト環境として入れておいたら後からコードも書き直さなくてよいので準備しておきます。
