@@ -44,14 +44,20 @@ DATABASES = {
 
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
+       
        'NAME': '<database_name>',
+       
        'USER': '<database_username>',
+       
        'PASSWORD': '<password>',
+       
        'HOST': '<database_hostname_or_ip>',
+       
        'PORT': '<database_port>',
    }
 
 }
+
 あとはいつも通りにDBのマイグレーションを行います。
 
 python manage.py makemigrations
