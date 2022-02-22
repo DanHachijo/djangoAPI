@@ -40,6 +40,7 @@ https://github.com/psycopg/psycopg2
 Settings.pyの設定
 ではSSQLiteの設定をコメントアウトして下記の用に設定していきます。
 
+```
 DATABASES = {
 
    'default': {
@@ -57,6 +58,7 @@ DATABASES = {
    }
 
 }
+```
 
 あとはいつも通りにDBのマイグレーションを行います。
 
