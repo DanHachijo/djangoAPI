@@ -15,11 +15,6 @@ class Category(models.Model):
 
 
 class Ticket(models.Model):
-    # TICKET_STATUS = [
-    #     ('Open', 'Open'),
-    #     ('Closed', 'Closed'),
-    # ]
-    # title = models.CharField(max_length=100)
     category = models.ForeignKey(
         Category, on_delete=models.PROTECT, related_name="category_name")
     staff = models.ForeignKey(Member, on_delete=models.PROTECT)

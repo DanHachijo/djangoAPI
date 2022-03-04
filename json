@@ -1,0 +1,29 @@
+    {
+      "category": {
+        "id": 1,
+        "name": "sales"
+      },
+      "staff": {
+        "id": 1,
+        "office": "横浜市",
+        "name": "yokoyan",
+        "email": "yokohama@gmail.com",
+        "phone": 1212332123,
+        "date": "2022-03-04T00:38:42.255576Z"
+      },
+      "store": {
+        "id": 2,
+        "name": "サンプルコード付",
+        "street": "123",
+        "status": "Active",
+        "date": "2022-03-04T00:38:28.195609Z"
+      },
+      "date": "2022-03-04T00:38:28",
+      "status": false,
+      "inquiry": "初めまして",
+      "respond": "見積もりを送付します。",
+      "contact_name": "横浜市",
+      "email": "yokohama@gmail.com",
+      "phone": "1212332123",
+      "escalated": false
+    }
