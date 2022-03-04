@@ -1,26 +1,31 @@
-from cgitb import lookup
+# from cgitb import lookup
 from rest_framework import serializers
 from .models import Ticket, Category
+from members.models import Member
+
 
 class CategorySerializer(serializers.ModelSerializer):
-    # id = serializers.IntegerField()
-    # name = serializers.CharField()
 
     class Meta:
         model = Category
-        fields = "__all__"      
+        fields = "__all__"
+        # fields = ["id", "name"]
+
 
 class TicketSerializer(serializers.ModelSerializer):
-#     id = serializers.IntegerField()
-#     title = serializers.CharField(max_length=100)
-#     category = serializers.PrimaryKeyRelatedField(many=False, queryset=Category.objects.all())
-#ストリングで表示したい場合
-#     category = serializers.StringRelatedField(many=False, read_only=False)
-# Getリクエストの時だけでソースを表示したい場合
-#     category = serializers.CharField(source="category.name")
-#     staff = serializers.PrimaryKeyRelatedField(many=False, queryset=Member.objects.all())
+    #     title = serializers.CharField(max_length=100)
+    # category = CategorySerializer(many=False, read_only=True)
+    category = CategorySerializer()
 
-#     date = serializers.DateTimeField()
+    # category = serializers.PrimaryKeyRelatedField(many=False, queryset=Category.objects.all())
+    # ストリングで表示したい場合
+    # category = serializers.StringRelatedField(many=False, read_only=False)
+    # Getリクエストの時だけでソースを表示したい場合
+    # category = serializers.CharField()
+    # staff = serializers.StringRelatedField(read_only=False, many=False)
+    # staff = serializers.CharField(source="member.name")
+
+    date = serializers.DateTimeField(format="%m/%d/%Y %H:%M:%S")
 #     urgent = serializers.BooleanField()
 #     status = serializers.CharField(max_length=100)
 #     inquery = serializers.CharField(max_length=1000)
@@ -35,7 +40,20 @@ class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
         fields = '__all__'
+        # depth = 1
 
-# many-to-manyの場合
-        # language = serializers.StringRelatedField(read_only=True, many=True)
+    # def create(self, validated_data):
+    #     ticket_data = validated_data.pop('category')
+    #     ticket = Ticket.objects.create(**validated_data)
+    #     Ticket.objects.create(ticket=ticket, **ticket_data)
+    #     return ticket
 
+    # def create(self, validated_data):
+    #     ticket_data = validated_data.pop('category')
+    #     category_serializer = CategorySerializer(data=category)
+    #     if category_serializer.is_valid():
+    #         category_serializer.save()
+
+    #     ticket = Ticket.objects.create(category=category_serializer.instance,
+    #                                    **validated_data)
+    #     return ticket

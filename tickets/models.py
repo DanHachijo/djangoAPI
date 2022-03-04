@@ -15,17 +15,18 @@ class Category(models.Model):
 
 
 class Ticket(models.Model):
-    TICKET_STATUS = [
-        ('Open', 'Open'),
-        ('Closed', 'Closed'),
-    ]
-    title = models.CharField(max_length=100)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="category_name")
+    # TICKET_STATUS = [
+    #     ('Open', 'Open'),
+    #     ('Closed', 'Closed'),
+    # ]
+    # title = models.CharField(max_length=100)
+    category = models.ForeignKey(
+        Category, on_delete=models.PROTECT, related_name="category_name")
     staff = models.ForeignKey(Member, on_delete=models.PROTECT)
     date = models.DateTimeField(blank=True, null=True)
-    urgent = models.BooleanField(default=False, blank=False)
-    status = models.CharField(max_length=100,choices=TICKET_STATUS, default="Open")
-    inquery = models.CharField(max_length=1000)
+    # urgent = models.BooleanField(default=False, blank=False)
+    status = models.BooleanField(default=False)
+    inquiry = models.CharField(max_length=1000)
     respond = models.CharField(max_length=1000)
     # Custromer Info
     store = models.ForeignKey(Store, on_delete=models.PROTECT)
@@ -36,6 +37,7 @@ class Ticket(models.Model):
 
     class Meta:
         verbose_name_plural = 'チケット'
+        # ordering = ('date')
 
     def __str__(self):
-        return self.title
+        return self.inquiry

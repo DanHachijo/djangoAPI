@@ -3,7 +3,7 @@ from .models import Store
 
 class StoreSerializer(serializers.ModelSerializer):
     # ForeginKeyはsourceで対応
-    company = serializers.CharField(source="company.name")
+    # company = serializers.CharField(source="company.name")
     # name = serializers.CharField(max_length=30)
     # street = serializers.CharField(max_length=100)
     # suite = serializers.CharField(max_length=100)

@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Company, Store
+from .models import Store
 
-members = [Company, Store]
+members = [Store]
 admin.site.register(members)
 # Register your models here.
