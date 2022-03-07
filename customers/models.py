@@ -34,7 +34,7 @@ class Store(models.Model):
         ('Lost', 'Lost'),
     ]
     # company = models.ForeignKey(Company, on_delete=models.PROTECT)
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, null=True, blank=True)
     street = models.CharField(max_length=100)
     status = models.CharField(
         max_length=30, choices=COMPANY_STATUS, default="Active")

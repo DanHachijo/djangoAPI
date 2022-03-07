@@ -18,6 +18,7 @@ class StoreSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Store
-        fields = '__all__'
+        # fields = '__all__'
+        fields = ['id', 'name']
 # many-to-manyの場合
     # tags = serializers.StringRelatedField(read_only=True, many=True)

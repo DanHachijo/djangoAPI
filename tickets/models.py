@@ -5,7 +5,7 @@ from customers.models import Store
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'カテゴリー'
