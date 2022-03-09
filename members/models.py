@@ -12,13 +12,13 @@ from django.db import models
 
 
 class Office(models.Model):
-    # country = models.ForeignKey(Country, on_delete=models.PROTECT)
-    name = models.CharField(max_length=30)
-    street = models.CharField(max_length=100)
-    suite = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)
-    State = models.CharField(max_length=100)
-    zip = models.IntegerField()
+    # id = models.IntegerField(primary_key=True, null=False)
+    name = models.CharField(max_length=30, null=True, blank=True)
+    street = models.CharField(max_length=100, null=True, blank=True)
+    suite = models.CharField(max_length=100, null=True, blank=True)
+    city = models.CharField(max_length=100, null=True, blank=True)
+    State = models.CharField(max_length=100, null=True, blank=True)
+    zip = models.IntegerField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'オフィス'
@@ -34,7 +34,7 @@ class Member(models.Model):
     ]
 
     name = models.CharField(max_length=50, null=True, blank=True)
-    office = models.ForeignKey(Office, on_delete=models.PROTECT)
+    office = models.ForeignKey(Office, on_delete=models.PROTECT, related_name='office')
     email = models.EmailField(max_length=60, null=True, blank=True)
     phone = models.IntegerField(null=True, blank=True)
     status = models.CharField(
