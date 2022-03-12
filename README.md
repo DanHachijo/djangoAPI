@@ -19,14 +19,19 @@ CRUMはCurrent Request User Middlewareの略だそうです。
 
 とりあえずインストールの仕方を説明します。
 コマンドラインから↓
+```
 pip install django-crum
+```
 
 次にSettings.pyのミドルウェアの最後らへんにこれを追加しましょう↓
+```
 MIDDLEWARE += ('crum.CurrentRequestUserMiddleware',)
+```
 
 get_current_user()
 今回はこのget_current_user()というモジュールを使用して現在Djangoアプリにログインしているユーザーを取得していきます。
 こちらが参考のコードになります。
+```
 from django.db import models
 from crum import get_current_user
 
@@ -46,6 +51,7 @@ class Thing(models.Model):
             self.created_by = user
         self.modified_by = user
         super(Thing, self).save(*args, **kwargs)
+```
 
 では、この後にDjangoのモデルをマイグレーションし直し、Adminパネルでログインし、新しいデータを作成しましょう。
 データをセーブするとDjangoにログインしたユーザーでセーブされましたね！
