@@ -5,7 +5,6 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 
 
 class Office(models.Model):
-    # id = models.IntegerField(primary_key=True, null=False)
     name = models.CharField(max_length=30, null=True, blank=True)
     street = models.CharField(max_length=100, null=True, blank=True)
     suite = models.CharField(max_length=100, null=True, blank=True)
@@ -65,6 +64,9 @@ class Member(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['user_name', 'first_name']
+
+    class Meta:
+        verbose_name_plural = 'スタッフ'
 
     def __str__(self):
         return self.user_name

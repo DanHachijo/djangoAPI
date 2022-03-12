@@ -3,6 +3,8 @@ from django.db import models
 from members.models import Member
 from customers.models import Store
 
+from crum import get_current_user
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
@@ -17,7 +19,9 @@ class Category(models.Model):
 class Ticket(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.PROTECT, related_name="category_name")
-    staff = models.ForeignKey(Member, on_delete=models.PROTECT)
+    staff = models.ForeignKey(Member, blank=True, null=True,
+                              default=None, on_delete=models.PROTECT)
+    # staff = models.ForeignKey(Member, on_delete=models.PROTECT)
     date = models.DateTimeField(blank=True, null=True)
     # urgent = models.BooleanField(default=False, blank=False)
     status = models.BooleanField(default=False)
@@ -29,6 +33,14 @@ class Ticket(models.Model):
     email = models.EmailField(max_length=100, blank=True, null=True)
     phone = models.CharField(max_length=100, blank=True, null=True)
     escalated = models.BooleanField(default=False, blank=False)
+
+    def save(self, *args, **kwargs):
+        user = get_current_user()
+        if user and not user.pk:
+            user = None
+        if not self.pk:
+            self.staff = user
+        super(Ticket, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = 'チケット'
